@@ -79,7 +79,7 @@ class AIConsultingWebsite {
   loadReCaptcha() {
     if (!window.grecaptcha && !document.querySelector('script[src*="recaptcha"]')) {
       const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY';
+      script.src = 'https://www.google.com/recaptcha/api.js?render=6Lc8BW0sAAAAAKFsCPmOvyyOfPxEOZI0BGVXH56y';
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
@@ -102,7 +102,7 @@ class AIConsultingWebsite {
         const calendlyContainer = document.getElementById('calendly-inline-widget');
         if (calendlyContainer && window.Calendly) {
           window.Calendly.initInlineWidget({
-            url: 'https://calendly.com/YOUR_LINK',
+            url: 'https://calendly.com/help-me-ai',
             parentElement: calendlyContainer,
             prefill: {},
             utm: {}
@@ -257,7 +257,7 @@ class AIConsultingWebsite {
       let recaptchaToken = '';
       if (window.grecaptcha) {
         try {
-          recaptchaToken = await window.grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {
+          recaptchaToken = await window.grecaptcha.execute('6Lc8BW0sAAAAAKFsCPmOvyyOfPxEOZI0BGVXH56y', {
             action: 'contact_form'
           });
           formData.append('recaptcha_token', recaptchaToken);
@@ -267,7 +267,8 @@ class AIConsultingWebsite {
       }
 
       // Submit form data
-      const response = await fetch('YOUR_FORM_ENDPOINT_URL', {
+      formData.append('form-name', 'contact');
+      const response = await fetch('/', {
         method: 'POST',
         body: formData
       });
@@ -346,7 +347,7 @@ class AIConsultingWebsite {
   openCalendlyPopup() {
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/YOUR_LINK'
+        url: 'https://calendly.com/help-me-ai'
       });
     }
   }
